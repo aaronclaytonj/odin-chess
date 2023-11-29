@@ -35,4 +35,28 @@ class GameLogic
       @current_mover = @white
     end
   end
+
+  def validate_select_peice_input(input)
+    if !correct_length(input) or !in_range(input) # also need to check if square if an actual piece and it can move ie not in check
+      print "Please select again\n"
+      input = validate_select_peice_input(gets.chomp)
+    end
+    input
+  end
+  
+  def correct_length(input)
+    if input.length < 2
+      print "Not enough chars. "
+    elsif input.length > 2
+      print "Too many chars. "
+    else 
+      return true
+    end
+  end
+
+  def in_range(input)
+    return true if input.match?(/[a-h]{1}[1-8]{1}/)
+    print "Not a valid square. "
+    false
+  end
 end

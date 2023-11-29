@@ -30,10 +30,13 @@ class Game
     # swap players
     puts "#{@game_logic.current_mover.color}s turn"
     puts "please select a piece (a1, a2.. a8, etc...) or (q) to quit game"
-    player_input = gets.chomp
-    if player_input[0] == 'q'
+    select_peice_input = gets.chomp
+    if select_peice_input[0] == 'q'
       quit_game()
     end
+
+    validated_input = @game_logic.validate_select_peice_input(select_peice_input)
+    puts "Validated input = #{validated_input}"
 
     @game_logic.change_turns()
   end
