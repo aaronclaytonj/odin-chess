@@ -13,6 +13,7 @@ class GameLogic
     @current_mover = @white
     @white.color = :white
     @black.color = :black
+    @black.is_checked = true
   end
 
   def is_game_over()
@@ -36,10 +37,10 @@ class GameLogic
     end
   end
 
-  def validate_select_peice_input(input)
+  def validate_select_piece_input(input)
     if !correct_length(input) or !in_range(input) # also need to check if square if an actual piece and it can move ie not in check
       print "Please select again\n"
-      input = validate_select_peice_input(gets.chomp)
+      input = validate_select_piece_input(gets.chomp)
     end
     input
   end
@@ -58,5 +59,9 @@ class GameLogic
     return true if input.match?(/[a-h]{1}[1-8]{1}/)
     print "Not a valid square. "
     false
+  end
+
+  def in_check?()
+    return @current_mover.is_checked
   end
 end

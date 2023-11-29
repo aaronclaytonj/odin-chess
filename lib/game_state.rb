@@ -1,7 +1,7 @@
 class GameState
 
   attr_reader :piece_picked
-  attr_accessor :color
+  attr_accessor :color, :is_checked
 
   def initialize()
     @is_checked = false

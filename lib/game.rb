@@ -24,6 +24,10 @@ class Game
   end
 
   def player_turns()
+
+    #Check for check
+    puts "#{@game_logic.current_mover.color}, you are in check! Move your king" if @game_logic.in_check?
+
     #show options
     # select peice or quit
     # select square to move to
@@ -35,8 +39,12 @@ class Game
       quit_game()
     end
 
-    validated_input = @game_logic.validate_select_peice_input(select_peice_input)
+    # select valid peice to move
+    validated_input = @game_logic.validate_select_piece_input(select_peice_input)
     puts "Validated input = #{validated_input}"
+
+    #select valid square to move to
+
 
     @game_logic.change_turns()
   end
