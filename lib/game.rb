@@ -32,19 +32,25 @@ class Game
     # select peice or quit
     # select square to move to
     # swap players
-    puts "#{@game_logic.current_mover.color}s turn"
-    puts "please select a piece (a1, a2.. a8, etc...) or (q) to quit game"
-    select_peice_input = gets.chomp
-    if select_peice_input[0] == 'q'
-      quit_game()
+
+    while true
+      # select valid peice to move
+      print "#{@game_logic.current_mover.color}"
+      puts " Please select a valid piece (a1, a2.. a8, .. h8) or (q) to quit game"
+      select_peice_input = gets.chomp
+      if select_peice_input[0] == 'q'
+        quit_game()
+      end
+
+      if @game_logic.validate_select_piece_input(select_peice_input)
+        validated_input = select_peice_input
+        break
+      end
     end
 
-    # select valid peice to move
-    validated_input = @game_logic.validate_select_piece_input(select_peice_input)
     puts "Validated input = #{validated_input}"
 
     #select valid square to move to
-
 
     @game_logic.change_turns()
   end

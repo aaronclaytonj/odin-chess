@@ -39,10 +39,9 @@ class GameLogic
 
   def validate_select_piece_input(input)
     if !correct_length(input) or !in_range(input) # also need to check if square if an actual piece and it can move ie not in check
-      print "Please select again\n"
-      input = validate_select_piece_input(gets.chomp)
+      return false
     end
-    input
+    true
   end
   
   def correct_length(input)
