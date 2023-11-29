@@ -36,21 +36,35 @@ class Game
     while true
       # select valid peice to move
       print "#{@game_logic.current_mover.color}"
-      puts " Please select a valid piece (a1, a2.. a8, .. h8) or (q) to quit game"
-      select_peice_input = gets.chomp
-      if select_peice_input[0] == 'q'
+      puts " Please select a valid piece (a1, b2, .. h8) or (q) to quit game"
+      player_input = gets.chomp
+      if player_input[0] == 'q'
         quit_game()
       end
 
-      if @game_logic.validate_select_piece_input(select_peice_input)
-        validated_input = select_peice_input
+      if @game_logic.validate_select_piece_input(player_input)
+        validated_input = player_input
         break
       end
     end
 
     puts "Validated input = #{validated_input}"
 
-    #select valid square to move to
+    
+    while true
+      #select valid square to move to
+      print "#{@game_logic.current_mover.color}"
+      puts " Please select a valid square to move to (a1, b2, .. h8) or (q) to quit game"
+      player_input = gets.chomp
+      if player_input[0] == 'q'
+        quit_game()
+      end
+
+      if @game_logic.validate_select_square_input(player_input)
+        validated_input = player_input
+        break
+      end
+    end
 
     @game_logic.change_turns()
   end

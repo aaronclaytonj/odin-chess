@@ -38,7 +38,14 @@ class GameLogic
   end
 
   def validate_select_piece_input(input)
-    if !correct_length(input) or !in_range(input) # also need to check if square if an actual piece and it can move ie not in check
+    if !correct_length(input) or !in_range(input) # also need to check if square is an actual piece and it can move
+      return false
+    end
+    true
+  end
+
+  def validate_select_square_input(input)
+    if !correct_length(input) or !in_range(input) # also need to check if square is an valid square to move to (cant move into check)
       return false
     end
     true
